@@ -1,0 +1,202 @@
+1. Dokumentasi root  adalah dokumen utama atau beranda yang digunakan dalam 
+system atau aplikasi untuk mengatur dan mengarahkan pengguna ke halaman atau 
+informasi lain di dalam struktur file atau aplikasi pet. Dalam konteks web, dokumen 
+root biasanya merujuk pada file yang pertama kali diakses saat membuka situs web 
+yang biasanya adalah file index.html, index.php, atau sejenisnya. 
+
+2. Pada Apache Web Server yang dijalankan melalui XAMPP (yang biasanya digunakan 
+di sistem operasi Windows), dokumen root tidak harus selalu terletak di direktori 
+C:\xampp\htdocs, tetapi secara default, direktori ini adalah tempat dokumen root situs 
+web diletakkan. 
+Alasan mengapa default-nya di C:\xampp\htdocs adalah sebagai berikut: 
+Konfigurasi Default Apache di XAMPP: Saat pertama kali menginstal XAMPP, 
+Apache telah dikonfigurasi untuk menggunakan direktori htdocs yang terletak di 
+dalam folder instalasi XAMPP (misalnya C:\xampp\htdocs) sebagai lokasi dokumen 
+root. Oleh karena itu, setiap kali Anda mengakses Apache, server secara otomatis 
+mencari file yang diminta dalam folder ini. 
+Kemudahan Pengaturan dan Keamanan: Menempatkan dokumen root di htdocs 
+memudahkan pengguna untuk mengelola situs mereka, serta memberikan batasan 
+yang jelas pada direktori yang digunakan oleh server untuk menyajikan konten. Selain 
+itu, dengan mengatur direktori dokumen root di dalam folder XAMPP, lebih mudah 
+untuk mengisolasi dan mengamankan file situs dari sistem file utama. 
+Namun, Anda bisa mengubah lokasi dokumen root Apache di XAMPP sesuai 
+kebutuhan Anda. Untuk melakukannya, Anda perlu mengubah konfigurasi di file 
+httpd.conf milik Apache, yang dapat ditemukan di: 
+makefile 
+Copy 
+C:\xampp\apache\conf\httpd.conf 
+Langkah-langkah untuk mengubah dokumen root: 
+Buka file httpd.conf menggunakan teks editor (misalnya Notepad). 
+Cari baris yang berisi: 
+php 
+Copy 
+DocumentRoot "C:/xampp/htdocs" 
+<Directory "C:/xampp/htdocs"> 
+Ubah path tersebut menjadi lokasi direktori yang diinginkan, misalnya: 
+php 
+Copy 
+DocumentRoot "D:/my_website" 
+<Directory "D:/my_website"> 
+Simpan perubahan dan restart Apache di XAMPP Control Panel. 
+Setelah Anda mengubah konfigurasi ini, Apache akan menggunakan direktori yang 
+baru saja Anda tentukan sebagai dokumen root. 
+Jadi, meskipun secara default dokumen root terletak di C:\xampp\htdocs, Anda bisa 
+menempatkan dokumen root di direktori lain yang Anda inginkan, asalkan Anda 
+mengubah pengaturan di file konfigurasi Apache (httpd.conf). 
+
+3.  
+a. Git init : perintah ini digunakan untuk menginisialisasi repositori Git baru si dalam 
+direktoi local. Setelah menjalankan perintah ini, direktori tersebut akan menjadi 
+repositori Git, dan Git akan mulai melacak perubahan file di dalamnya. 
+b. Git clone : perintah ini digunakan untuk membuat Salinan (clone) dari repository 
+Git yang ada, baik itu repositori local atau repositori yang ada di server remote ( 
+misalnya GitHub atau Gitlab). Ini akan mendownloas seluruh Riwayat proyek dan file 
+dari repositori asal ke mesin local.  
+c. Git remote : perintah ini digunakan untuk mengelola repositori remote yang 
+terhubung dengan repositori local. Anda bisa menambah, menghapus, atau melihat 
+repositori remote.  
+d. Git add : perintah inii digunakan untuk menambahkan perubahan pada file di 
+direktori kerja ke dalam staging area. Staging area adalah tempat untuk menyiapkan 
+perubahan sebelum melakukan commit. 
+e. Git commit :perintah ini digunakan untuk menyimpan perubahan yang telah 
+ditambahkan ke staging area ke dalam riwayat commit di repositori local. Commit 
+mencatat perubahan spresifik dengan pesan yan menjelaskan apa yang telah diubah. 
+f. Git push : perintah ini digunakan untuk mengirim (push) commit yang ada di 
+repositori lokal ke repositori remote. Biasanya digunkan setelah melakukan beberapa 
+commit lokal dan ingin memperbaarui repositori remote, misalnya GitHub. 
+g. Git checkout : perintah ini digunakan untuk beralih antara branch di repositpri Git, 
+ataau untuk mengembalikan file ke keaadaan tertentu. Anda bisa menggunakan git 
+checkout untuk berpindah antara branch, atau untuk mengembalikan file ke status 
+sebelumnya.  
+
+4. Perbedaan antara GitHub dan GitLab 
+a. Tujuan dan Fokus Utama : GitHub lebih focus sebagai platform berbagai kode 
+dan kolaborasi yang digunakan oleh banyak pengembang di dunia. GitHub sangat 
+popular di kalangan pengembangan open-source dan memiliki komunitas yang sangat 
+besar. GitHub terkenal karena kemudahan penggunaannya, terutama untuk repositori 
+public, dan merupakan tempat di mana banyak proyek open-source besar berada. 
+GitLab: 
+GitLab adalah platform DevOps yang lebih lengkap, yang tidak hanya mencakup 
+pengelolaan kode sumber tetapi juga menyediakan berbagai alat untuk pengembangan 
+perangkat lunak, termasuk CI/CD (Continuous Integration/Continuous Deployment), 
+pelacakan isu, manajemen proyek, dan masih banyak lagi. 
+GitLab lebih berfokus pada pengelolaan siklus hidup pengembangan perangkat lunak 
+secara menyeluruh, dari pengembangan hingga penerapan dan pemeliharaan. 
+b. Repositori dan Keamanan 
+GitHub: 
+GitHub menyediakan repositori publik dan privat. Repositori privat di GitHub 
+biasanya berbayar untuk akun pribadi atau organisasi, meskipun mereka menawarkan 
+paket gratis dengan batasan tertentu. 
+GitHub juga memiliki fitur untuk mengelola kolaborasi, terutama dengan kontrol 
+akses berbasis tim untuk repositori privat. 
+GitLab: 
+GitLab memungkinkan Anda untuk membuat repositori publik dan privat secara gratis 
+tanpa batasan, bahkan untuk repositori privat di akun gratis. 
+GitLab memberikan kontrol yang lebih luas atas repositori privat dan pengaturan 
+keamanan internal. Fitur-fitur keamanan seperti kontrol akses yang lebih mendalam 
+dan fitur audit sering kali lebih diperhatikan di GitLab. 
+c. Fitur Continuous Integration (CI) / Continuous Deployment (CD) 
+GitHub: 
+GitHub memiliki GitHub Actions, yang memungkinkan Anda untuk melakukan 
+otomasi proses CI/CD di dalam platform GitHub itu sendiri. Fitur ini relatif baru dan 
+berkembang, namun sudah sangat berguna untuk integrasi dan deployment otomatis. 
+GitLab: 
+GitLab sangat kuat dalam fitur CI/CD karena secara default menyediakan pipeline 
+CI/CD lengkap dalam platformnya. GitLab memiliki alat otomatisasi yang lebih 
+canggih untuk pengujian, build, dan deployment otomatis yang sudah terintegrasi 
+dengan baik dalam ekosistemnya. 
+d. Hosting dan Pengelolaan Infrastruktur 
+GitHub: 
+GitHub adalah platform berbasis cloud yang sepenuhnya dikelola oleh GitHub 
+(Microsoft). Anda tidak bisa meng-host GitHub secara lokal di server pribadi Anda, 
+meskipun GitHub menawarkan GitHub Enterprise untuk penggunaan di perusahaan 
+dengan infrastruktur tertentu. 
+GitLab: 
+GitLab memiliki dua versi: GitLab.com (berbasis cloud) dan GitLab Self-Hosted (on
+premise). Ini berarti GitLab memungkinkan perusahaan untuk meng-host GitLab di 
+server mereka sendiri, memberikan kontrol penuh atas infrastruktur dan data mereka. 
+e. Integrasi dan Penggunaan Lainnya 
+GitHub: 
+GitHub banyak digunakan untuk open-source dan berbagi proyek kode dengan 
+komunitas besar. Pengguna GitHub seringkali berbagi proyek mereka secara terbuka 
+dan memungkinkan kontribusi dari pengembang lain. GitHub juga terintegrasi dengan 
+berbagai alat dan layanan pihak ketiga. 
+GitLab: 
+GitLab memiliki integrasi end-to-end yang lebih dalam, mendukung pengembangan, 
+pengujian, dan penerapan perangkat lunak dalam satu platform yang komprehensif. 
+Dengan fitur seperti issue tracking, time tracking, dan manajemen proyek, GitLab 
+memungkinkan tim untuk mengelola seluruh siklus hidup perangkat lunak dalam satu 
+platform. 
+f. Komunitas dan Dukungan 
+GitHub: 
+GitHub memiliki komunitas pengguna terbesar di dunia, terutama dalam 
+pengembangan open-source. Banyak proyek besar dan populer (seperti Linux, React, 
+dll.) di-host di GitHub. 
+GitHub memiliki forum komunitas, dokumentasi, dan dukungan yang sangat besar, 
+baik untuk pengguna gratis maupun pengguna premium. 
+GitLab: 
+GitLab memiliki komunitas yang lebih kecil dibandingkan GitHub, tetapi memiliki 
+dukungan dan dokumentasi yang kuat, terutama untuk penggunaan dalam perusahaan 
+dan tim pengembangan profesional. 
+GitLab lebih berorientasi pada penyediaan dukungan untuk tim DevOps dan 
+pengembangan berkelanjutan. 
+g. Antarmuka Pengguna (UI) dan Pengalaman Pengguna (UX) 
+GitHub: 
+GitHub dikenal dengan antarmuka pengguna yang sangat ramah dan sederhana, yang 
+sangat mudah digunakan oleh pemula hingga pengembang berpengalaman. 
+GitLab: 
+GitLab memiliki antarmuka yang lebih kompleks karena fitur-fiturnya yang lebih 
+banyak. Untuk pemula, antarmukanya bisa terasa lebih sulit, tetapi bagi tim DevOps 
+atau pengembang profesional, GitLab menyediakan alat yang lebih lengkap dan 
+fleksibel. 
+
+5.  
+a. Variabel Sistem (System Variables) 
+Definisi: Variabel sistem adalah variabel yang berlaku untuk seluruh sistem dan dapat diakses 
+oleh semua pengguna di komputer tersebut. Nilai-nilai yang disimpan dalam variabel sistem 
+biasanya digunakan oleh sistem operasi atau aplikasi yang berjalan di komputer. 
+Contoh: Beberapa contoh variabel sistem yang umum meliputi: 
+PATH (menyimpan daftar direktori yang akan dicari untuk menjalankan program). 
+TEMP atau TMP (menyimpan lokasi folder sementara untuk file sementara). 
+SYSTEMROOT (menyimpan lokasi direktori instalasi sistem operasi Windows). 
+Perubahan: Untuk mengubah variabel sistem, Anda memerlukan hak administrator. Jika 
+variabel sistem diubah, perubahan tersebut akan berlaku untuk semua pengguna di komputer 
+tersebut. 
+Lokasi: Variabel sistem disetel di tingkat sistem dan dapat diubah melalui pengaturan 
+"System Properties" di Windows (melalui Control Panel atau Environment Variables). 
+b. Variabel Pengguna (User Variables) 
+Definisi: Variabel pengguna adalah variabel yang hanya berlaku untuk pengguna tertentu dan 
+digunakan untuk menyimpan nilai yang relevan dengan pengguna tersebut. Variabel ini hanya 
+dapat diakses oleh pengguna yang bersangkutan dan tidak memengaruhi pengguna lain di 
+komputer yang sama. 
+Contoh: Beberapa contoh variabel pengguna yang umum meliputi: 
+USERPROFILE (menyimpan path ke folder profil pengguna, seperti 
+C:\Users\NamaPengguna). 
+APPDATA (menyimpan lokasi folder tempat aplikasi menyimpan data konfigurasi 
+pengguna). 
+TEMP (menyimpan folder sementara khusus untuk pengguna tersebut). 
+Perubahan: Variabel pengguna hanya dapat diubah oleh pengguna itu sendiri. Pengubahan 
+variabel ini tidak mempengaruhi pengguna lain yang ada di komputer. 
+Lokasi: Variabel pengguna disetel di tingkat profil pengguna dan dapat diubah melalui 
+"Environment Variables" di pengaturan sistem (di dalam Control Panel). 
+
+6. Persamaan antara Variabel Sistem dan Variabel Konstan 
+a. Nilai yang Tidak Sering Berubah: 
+Variabel sistem dan variabel konstan biasanya berisi nilai yang tetap dan tidak 
+berubah secara dinamis dalam konteks penggunaannya. 
+Misalnya, pada variabel sistem, nilai seperti SYSTEMROOT yang menunjukkan 
+lokasi direktori sistem operasi (misalnya C:\Windows), jarang berubah setelah sistem 
+diinstal. 
+Variabel konstan dalam pemrograman juga menyimpan nilai yang tidak dapat diubah 
+selama program berjalan. 
+Mempunyai Tujuan untuk Mengatur atau Memberikan 
+b. Informasi Penting: 
+Variabel sistem berfungsi untuk memberikan informasi penting yang 
+digunakan oleh sistem operasi dan aplikasi di komputer. 
+Variabel konstan dalam pemrograman berfungsi untuk menyimpan nilai tetap yang 
+diperlukan dalam pengaturan program, misalnya pengaturan konfigurasi atau nilai 
+tetap seperti PI (3.14) dalam matematika. 
+c. Penting untuk Pengaturan Sistem atau Program: 
+Baik variabel sistem maupun variabel konstan memberikan nilai yang 
+digunakan dalam menjalankan suatu proses atau alur kerja, apakah itu pengaturan 
+sistem operasi atau bagian dalam program. 
