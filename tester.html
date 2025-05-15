@@ -1,0 +1,188 @@
+<html>
+<?php
+include_once 'top.php';
+require_once 'koneksi.php';
+
+// Aktifkan error reporting (debug)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Hitung jumlah data
+$jumlah_dosen = $pdo->query("SELECT COUNT(*) FROM dosen")->fetchColumn();
+$jumlah_penelitian = $pdo->query("SELECT COUNT(*) FROM penelitian")->fetchColumn();
+$jumlah_kegiatan = $pdo->query("SELECT COUNT(*) FROM kegiatan")->fetchColumn();
+$jumlah_kegiatan_dosen = $pdo->query("SELECT COUNT(*) FROM dosen_kegiatan")->fetchColumn();
+?>
+
+<div class="app-wrapper">
+  <?php include_once 'navbar.php'; ?>
+  <?php include_once 'sidebar.php'; ?>
+
+  <main class="app-main">
+    <div class="app-content-header">
+      <div class="container-fluid">
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <h3 class="mb-0">Dashboard</h3>
+          </div>
+          <div class="col-sm-6 text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Dosen -->
+          <div class="col-md-3 mb-4">
+            <div class="card bg-primary text-white h-100 shadow">
+              <div class="card-body">
+                <h5>Jumlah Dosen</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="display-6"><?= $jumlah_dosen ?></span>
+                  <i class="bi bi-person-lines-fill fs-1"></i>
+                </div>
+              </div>
+              <div class="card-footer text-white">
+                <a href="dosen_list.php" class="text-white text-decoration-none">
+                  Lihat Detail <i class="bi bi-link-45deg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Penelitian -->
+          <div class="col-md-3 mb-4">
+            <div class="card bg-success text-white h-100 shadow">
+              <div class="card-body">
+                <h5>Jumlah Penelitian</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="display-6"><?= $jumlah_penelitian ?></span>
+                  <i class="bi bi-journal-check fs-1"></i>
+                </div>
+              </div>
+              <div class="card-footer text-white">
+                <a href="penelitian_list.php" class="text-white text-decoration-none">
+                  Lihat Detail <i class="bi bi-link-45deg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kegiatan -->
+          <div class="col-md-3 mb-4">
+            <div class="card bg-warning text-white h-100 shadow">
+              <div class="card-body">
+                <h5>Jumlah Kegiatan</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="display-6"><?= $jumlah_kegiatan ?></span>
+                  <i class="bi bi-easel3 fs-1"></i>
+                </div>
+              </div>
+              <div class="card-footer text-white">
+                <a href="kegiatan_list.php" class="text-white text-decoration-none">
+                  Lihat Detail <i class="bi bi-link-45deg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kegiatan Dosen -->
+          <div class="col-md-3 mb-4">
+            <div class="card bg-danger text-white h-100 shadow">
+              <div class="card-body">
+                <h5>Kegiatan Dosen Aktif</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="display-6"><?= $jumlah_kegiatan_dosen ?></span>
+                  <i class="bi bi-clipboard-data fs-1"></i>
+                </div>
+              </div>
+              <div class="card-footer text-white">
+                <a href="kegiatan_dosen_list.php" class="text-white text-decoration-none">
+                  Lihat Detail <i class="bi bi-link-45deg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div> <!-- /.row -->
+        <div class="content-wrapper">
+  <section class="content">
+    <div class="container-fluid pt-3">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Statistik Dosen & Kegiatan</h3>
+        </div>
+        <div class="card-body" style="height: 500px;"> <!-- ubah tinggi di sini -->
+          <canvas id="statistikChart" style="height: 100%;"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('statistikChart').getContext('2d');
+
+  const gradientGreen = ctx.createLinearGradient(0, 0, 0, 400);
+  gradientGreen.addColorStop(0, 'rgba(0, 200, 150, 0.4)');
+  gradientGreen.addColorStop(1, 'rgba(0, 200, 150, 0.05)');
+
+  const gradientBlue = ctx.createLinearGradient(0, 0, 0, 400);
+  gradientBlue.addColorStop(0, 'rgba(0, 123, 255, 0.4)');
+  gradientBlue.addColorStop(1, 'rgba(0, 123, 255, 0.05)');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan \'2025', 'Feb \'2025', 'Mar \'2025', 'Apr \'2025', 'May \'2025', 'Jun \'2025'],
+      datasets: [
+        {
+          label: 'Jumlah Dosen',
+          data: [40, 60, 80, 50, 60, 20],
+          fill: true,
+          backgroundColor: gradientGreen,
+          borderColor: 'rgba(0, 200, 150, 1)',
+          borderWidth: 3,
+          tension: 0.4
+        },
+        {
+          label: 'Jumlah Penelitian',
+          data: [28, 70, 40, 20, 85, 80],
+          fill: true,
+          backgroundColor: gradientBlue,
+          borderColor: 'rgba(0, 123, 255, 1)',
+          borderWidth: 3,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false, // penting untuk grafik tinggi
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 20
+          }
+        }
+      }
+    }
+  });
+</script>
+
+  </main>
+
+  <?php include_once 'footer.php'; ?>
+</div>
+</html>
